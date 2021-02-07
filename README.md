@@ -394,4 +394,19 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
     }
+    
+    // Make our button useful using actionPerformed method
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String player1 = usertext1.getText();
+		String player2 = usertext2.getText();
+		
+		// Make sure player name length is not too big or too small 
+		if(player1.length()<30 && player2.length()<30 && player1.length()>0 && player2.length()>0) {
+		success.setText("Player 1: " + player1 + " (Magenta)");
+		success2.setText("Player 2: " + player2 + " (Cyan)");
+		success3.setText("Neutral 1: (Dark Grey)");
+		success4.setText("Neutral 2: (Plain Grey)");
+		success5.setText("Neutral 3: (White)");
+		success6.setText("Neutral 4: (Light Grey)");
 }
