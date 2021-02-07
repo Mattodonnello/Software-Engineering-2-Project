@@ -30,10 +30,8 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	private static JLabel success4  ;
 	private static JLabel success5  ;
 	private static JLabel success6  ;
-	
-
-	public static void main(String[] args) {
-	public RiskFrame(){
+    
+    public RiskFrame(){
     	
     	
         splitPane = new JSplitPane();
@@ -42,7 +40,7 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
         Draw s = new Draw();
 
         // Declare your 42 Country name labels
-    JLabel lbl1 = new JLabel("Ontario");
+        JLabel lbl1 = new JLabel("Ontario");
 		JLabel lbl2 = new JLabel("Quebec");
 		JLabel lbl3 = new JLabel("NW Territory");
 		JLabel lbl4 = new JLabel("Alberta");
@@ -299,10 +297,8 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 		continent4.setSize(150, 15); 
 		continent5.setSize(150, 15);
 		continent6.setSize(150, 15);
-
-	}
-	
-	// Add the Draw class components to our top panel
+		
+		// Add the Draw class components to our top panel
 		myPanel.add(s);
         s.setSize(990,599);
 		 
@@ -325,8 +321,8 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 
         // Set Null layout for our bottom panel
         panel.setLayout(null);
-	
-	// Set player 1 name label/coordinates and add to lower panel
+    	
+        // Set player 1 name label/coordinates and add to lower panel
     	label = new JLabel("Player 1: ");
     	label.setBounds(11, 21, 81, 26);
     	panel.add(label);
@@ -380,6 +376,7 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
     	// Pack makes sure all our components are implemented and our panels are visible
         pack();
     }
+
     public static void main(String args[]){
     	// Declare our frame 
     	RiskFrame s = new RiskFrame();
@@ -394,7 +391,7 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
     }
-    
+
     // Make our button useful using actionPerformed method
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -410,7 +407,8 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 		success5.setText("Neutral 3: (White)");
 		success6.setText("Neutral 4: (Light Grey)");
 		
-			// Allocate 9 territories to each player and 6 to each neutral
+		
+		// Allocate 9 territories to each player and 6 to each neutral
 		
 		// Player 1 - Magenta
 		JLabel army1 = new JLabel("1 army");
@@ -694,5 +692,6 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 		army42.setForeground(Color.LIGHT_GRAY);
 		army42.setSize(150,15);
 		}
-		}
+		
+	}
 }
