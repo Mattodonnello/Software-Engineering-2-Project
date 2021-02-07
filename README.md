@@ -325,5 +325,60 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 
         // Set Null layout for our bottom panel
         panel.setLayout(null);
+	
+	// Set player 1 name label/coordinates and add to lower panel
+    	label = new JLabel("Player 1: ");
+    	label.setBounds(11, 21, 81, 26);
+    	panel.add(label);
+    	
+    	// Set player 2 name label/coordinates and add to lower panel
+    	label2 = new JLabel("Player 2: ");
+    	label2.setBounds(11, 51, 81, 26);
+    	panel.add(label2);
+    	
+    	// Declare text field for player 1 user name
+    	usertext1 = new JTextField();
+    	usertext1.setBounds(101, 21, 166, 26);
+    	panel.add(usertext1);
+    	
+    	// Declare text field for player 2 user name
+    	usertext2 = new JTextField();
+    	usertext2.setBounds(101, 51, 166, 26);
+    	panel.add(usertext2);
+    	
+    	// Set button to select names and allocate territories and add action listener
+    	button1 = new JButton("Allocate Territories");
+    	button1.setBounds(11, 76, 151, 17);
+    	button1.addActionListener(this);
+    	panel.add(button1);
+    	
+    	// Add all our success labels which we will set later if player names are sufficient
+    	success = new JLabel("");
+    	success.setBounds(286, 21, 351, 26);
+    	panel.add(success);
+    	
+    	success2 = new JLabel("");
+    	success2.setBounds(286, 51, 351, 26);
+    	panel.add(success2);
+    	
+    	success3 = new JLabel("");
+    	success3.setBounds(485, 20, 550, 25);
+    	panel.add(success3);
+    	
+    	success4 = new JLabel("");
+    	success4.setBounds(485, 50, 550, 25);
+    	panel.add(success4);
+    	
+    	success5 = new JLabel("");
+    	success5.setBounds(685, 20, 750, 25);
+    	panel.add(success5);
+    	
+    	success6 = new JLabel("");
+    	success6.setBounds(685, 50, 750, 25);
+    	panel.add(success6);
+
+    	// Pack makes sure all our components are implemented and our panels are visible
+        pack();
+    }
 
 }
