@@ -301,5 +301,29 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 		continent6.setSize(150, 15);
 
 	}
+	
+	// Add the Draw class components to our top panel
+		myPanel.add(s);
+        s.setSize(990,599);
+		 
+        // Declare our lower half panel
+        panel = new JPanel();     
+
+        // Set the dimensions of our two panels and the layout of our panels 
+        setPreferredSize(new Dimension(1000, 1600));     
+        getContentPane().setLayout(new GridLayout());  
+        getContentPane().add(splitPane);               
+
+        // Split our panels vertically and divide them at a certain location 
+        // to allow for the required space in each
+        splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);  
+        splitPane.setDividerLocation(600);
+        
+        // Set myPanel as our top panel and panel as our bottom panel
+        splitPane.setTopComponent(myPanel);                  
+        splitPane.setBottomComponent(panel);            
+
+        // Set Null layout for our bottom panel
+        panel.setLayout(null);
 
 }
