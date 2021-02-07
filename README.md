@@ -380,5 +380,18 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
     	// Pack makes sure all our components are implemented and our panels are visible
         pack();
     }
-
+    public static void main(String args[]){
+    	// Declare our frame 
+    	RiskFrame s = new RiskFrame();
+        EventQueue.invokeLater(new Runnable(){
+            @Override
+            public void run(){
+            // Make frame visible, resizable, exitable and give it a title
+                s.setVisible(true);
+                s.setTitle("Risk Game Map");
+                s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                s.setResizable(true);
+            }
+        });
+    }
 }
