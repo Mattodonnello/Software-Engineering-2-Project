@@ -1,3 +1,6 @@
+package panelExample;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -11,16 +14,21 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 
 	// Use JSplitPane to split our window into two
     private final JSplitPane splitPane;  
-    
+    private final JSplitPane sp2;
     // Create our two panels
     private final JPanel myPanel = new JPanel();
-    private final JPanel panel; 
+    private final JPanel panel= new JPanel();
+    private final JPanel rightPanel= new JPanel();
     // Declare our two player name labels
     private static JLabel label;
 	private static JLabel label2;
+	private static JLabel label3;
+	private static JLabel label4;
 	// Declare our two labels for users to choose there player names
 	private static JTextField usertext1;
 	private static JTextField usertext2;
+	private static JTextField usertext3;
+	private static JTextField usertext4;
 	// Declare our button to select names and allocate territories
 	private static JButton button1;
 	// Declare multiple success label variables that print if player names are adequate
@@ -35,6 +43,7 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
     	
     	
         splitPane = new JSplitPane();
+        sp2 = new JSplitPane();
         
         // Declare your Main class to access its components
         Draw s = new Draw();
@@ -301,26 +310,31 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 		// Add the Draw class components to our top panel
 		myPanel.add(s);
         s.setSize(990,599);
-		 
-        // Declare our lower half panel
-        panel = new JPanel();     
 
         // Set the dimensions of our two panels and the layout of our panels 
-        setPreferredSize(new Dimension(1000, 1600));     
+        setPreferredSize(new Dimension(1250, 1600));     
         getContentPane().setLayout(new GridLayout());  
-        getContentPane().add(splitPane);               
+        getContentPane().add(splitPane); 
+        getContentPane().add(sp2); 
 
         // Split our panels vertically and divide them at a certain location 
         // to allow for the required space in each
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);  
         splitPane.setDividerLocation(600);
         
+        sp2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);  
+        sp2.setDividerLocation(1000);
+        
         // Set myPanel as our top panel and panel as our bottom panel
         splitPane.setTopComponent(myPanel);                  
-        splitPane.setBottomComponent(panel);            
+        splitPane.setBottomComponent(panel);
+        
+        sp2.setLeftComponent(splitPane);                  
+        sp2.setRightComponent(rightPanel);
 
         // Set Null layout for our bottom panel
         panel.setLayout(null);
+        
     	
         // Set player 1 name label/coordinates and add to lower panel
     	label = new JLabel("Player 1: ");
@@ -372,6 +386,26 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
     	success6 = new JLabel("");
     	success6.setBounds(685, 50, 750, 25);
     	panel.add(success6);
+    	
+    	
+    	// RIGHT PANEL TEXT/LABELS/BUTTONS
+    	
+    	// Set player 1 name label/coordinates and add to lower panel
+    	label3 = new JLabel("PICK YOUR TERRITORY");
+    	label3.setBounds(1002, 20, 1042, 60);
+    	rightPanel.add(label3);
+        
+        usertext3 = new JTextField();
+      	usertext3.setBounds(1102, 20, 1192, 60);
+        rightPanel.add(usertext3);
+        
+    	label4 = new JLabel("PICK NEUTRAL TERRITORY");
+    	label4.setBounds(1002, 70, 1042, 76);
+    	rightPanel.add(label4);
+        
+        usertext4 = new JTextField();
+      	usertext4.setBounds(1102, 100, 1192, 76);
+        rightPanel.add(usertext4);
 
     	// Pack makes sure all our components are implemented and our panels are visible
         pack();
