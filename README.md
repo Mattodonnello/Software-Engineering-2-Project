@@ -31,6 +31,7 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	private static JTextField usertext4;
 	// Declare our button to select names and allocate territories
 	private static JButton button1;
+	private static JButton button2;
 	// Declare multiple success label variables that print if player names are adequate
 	private static JLabel success;
 	private static JLabel success2;
@@ -38,6 +39,9 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	private static JLabel success4  ;
 	private static JLabel success5  ;
 	private static JLabel success6  ;
+	//Declaring the dice for player 1 and player 2
+	private static int die1;
+	private static int die2;
     
     public RiskFrame(){
     	
@@ -431,6 +435,20 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String player1 = usertext1.getText();
 		String player2 = usertext2.getText();
+		die1 = (int) (Math.random() * 6 * 1);
+                die2 = (int) (Math.random() * 6 * 1);
+		//If the Roll button is pressed player 1's die is rolled and so is player 2's
+		if (e.getSource() == button2) {
+            System.out.println("Player 1 rolled " + die1);
+            System.out.println("Player 2 rolled " + die2);
+        }
+        if(die1>die2){
+            System.out.println("Player 1 goes first");
+        }else if(die1<die2){
+            System.out.println("Player 2 goes first");
+        }else {
+            System.out.println("Draw roll again");
+        }
 		
 		// Make sure player name length is not too big or too small 
 		if(player1.length()<30 && player2.length()<30 && player1.length()>0 && player2.length()>0) {
