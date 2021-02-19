@@ -32,13 +32,19 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	// Declare our button to select names and allocate territories
 	private static JButton button1;
 	private static JButton button2;
+
 	// Declare multiple success label variables that print if player names are adequate
 	private static JLabel success;
 	private static JLabel success2;
 	private static JLabel success3;
-	private static JLabel success4  ;
-	private static JLabel success5  ;
-	private static JLabel success6  ;
+	private static JLabel success4;
+	private static JLabel success5;
+	private static JLabel success6;
+	private static JLabel success7;
+    	private static JLabel success8;
+    	private static JLabel success9;
+   	private static JLabel success10;
+    	private static JLabel success11;
 	//Declaring the dice for player 1 and player 2
 	private static int die1;
 	private static int die2;
@@ -410,6 +416,32 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
         usertext4 = new JTextField();
       	usertext4.setBounds(1102, 100, 1192, 76);
         rightPanel.add(usertext4);
+	
+	//Button to roll the two dies
+        button2 = new JButton("Roll");
+        button2.setBounds(1200, 78, 151, 17);
+        button2.addActionListener(this);
+        rightPanel.add(button2);
+	
+	 success7 = new JLabel("");
+        success7.setBounds(1300,70 , 750, 25);
+        rightPanel.add(success7);
+
+        success8 = new JLabel("");
+        success8.setBounds(1400,60 , 750, 25);
+        rightPanel.add(success8);
+
+        success9 = new JLabel("");
+        success9.setBounds(1700,50 , 750, 25);
+        rightPanel.add(success9);
+
+        success10 = new JLabel("");
+        success10.setBounds(1500,40 , 750, 25);
+        rightPanel.add(success10);
+
+        success11 = new JLabel("");
+        success11.setBounds(1600,30 , 750, 25);
+        rightPanel.add(success11);
 
     	// Pack makes sure all our components are implemented and our panels are visible
         pack();
@@ -435,19 +467,19 @@ public class RiskFrame extends javax.swing.JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String player1 = usertext1.getText();
 		String player2 = usertext2.getText();
-		die1 = (int) (Math.random() * 6 * 1);
-                die2 = (int) (Math.random() * 6 * 1);
+		die1 = (int) (Math.random() * 6 + 1);
+                die2 = (int) (Math.random() * 6 + 1);
 		//If the Roll button is pressed player 1's die is rolled and so is player 2's
 		if (e.getSource() == button2) {
-            System.out.println("Player 1 rolled " + die1);
-            System.out.println("Player 2 rolled " + die2);
+            success7.setText("Player 1 rolled " + die1);
+            success8.setText("Player 2 rolled " + die2);
         }
         if(die1>die2){
-            System.out.println("Player 1 goes first");
+            success9.setText("Player 1 goes first");
         }else if(die1<die2){
-            System.out.println("Player 2 goes first");
+            success10.setText("Player 2 goes first");
         }else {
-            System.out.println("Draw roll again");
+            success11.setText("Draw roll again");
         }
 		
 		// Make sure player name length is not too big or too small 
