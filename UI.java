@@ -70,16 +70,28 @@ public class UI {
 		displayString(PROMPT + response);
 		return response;		
 	}
+	
+	public void calculateReinforcements(Player byPlayer, Player forPlayer) {
+		String message=null;
+		int player_replacements= 3;
+		int neutral_replacements= 1;
+			if (byPlayer.equals(forPlayer)) {
+				message = makeLongName(byPlayer) + " gets " + player_replacements + " reinforcements";				
+			} else {
+				message = makeLongName(byPlayer) + " gets " + neutral_replacements + " reinforcements";
+			}
+			displayString(message);
+	}
 		
 	public void inputPlacement (Player byPlayer, Player forPlayer) {
-		String response, message;
+		String response, message=null;
 		boolean placementOK = false;
 		do {
-			message = makeLongName(byPlayer) + ": Enter a country to reinforce with ";
 			if (byPlayer.equals(forPlayer)) {
-				message += "your own units";				
+				calculateReinforcements(byPlayer, forPlayer);
+				message = makeLongName(byPlayer) + ": REINFORCE: Enter a country to reinforce and the number of units";				
 			} else {
-				message += makeLongName(forPlayer) + "'s units";
+				message = makeLongName(byPlayer) + ": REINFORCE: Enter a country occupied by " + makeLongName(forPlayer) + " to reinforce by 1 unit";
 			}
 			displayString(message);
 			response = commandPanel.getCommand();
