@@ -96,10 +96,24 @@ public class UI {
 			displayString(message);
 			response = commandPanel.getCommand();
 			displayString(PROMPT + response);
+			if (byPlayer.equals(forPlayer)) {
 			parse.countryId(response);
+			}
+			else {
+				parse.countryId2(response);
+			}
+			
+			
 			if (parse.isError()) {
 				displayString("Error: Not a country");
-			} else {
+			}
+			else if (parse.isError2()) {
+				displayString("Error: Incorrect command");
+			}
+			else if (parse.isError3()) {
+				displayString("Error: not enough units");
+			}
+			else {
 				if (!board.checkOccupier(forPlayer, parse.getCountryId())) {
 					displayString("Error: Cannot place the units on that country");
 				} else {
