@@ -1,4 +1,3 @@
-
 public class Sprint3 {
 
 	public static void main (String args[]) {	   
@@ -74,6 +73,23 @@ public class Sprint3 {
 			playerId = (++playerId)%GameData.NUM_PLAYERS;
 			currPlayer = players[playerId];
 		}
+		
+		ui.displayString("\nROLL DICE TO SEE WHO TAKES THE FIRST TURN");
+		do {
+			for (int i=0; i<GameData.NUM_PLAYERS; i++) {
+				players[i].rollDice(1);
+				ui.displayDice(players[i]);
+			}
+		} while (players[0].getDie(0) == players[1].getDie(0)); 
+		if (players[0].getDie(0) > players[1].getDie(0)) {
+			playerId = 0;
+		} else {
+			playerId = 1;
+		}
+		currPlayer = players[playerId];
+		ui.displayRollWinner(currPlayer);
+		
+		ui.displayString("\nSTART TURNS\n");
 		
 		return;
 	}
