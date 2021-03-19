@@ -24,21 +24,23 @@ public class Parse {
 		boolean found = false;
 		boolean found2 = true;
 		boolean found3 = true;
+		int num=0;
+		if (string.matches(".*\\d.*")) {
 		String number= string.replaceAll("[^0-9]", "");
-		int num = Integer.parseInt(number);
+		num = Integer.parseInt(number);
+		}
 		
-		if(num>3) {
-			found3 = false; 
-			found2=true;
+		if (!(string.matches(".*\\d.*"))) {
+			found2 = false;
+			found = true;
+			}
+		
+		else if(num!=3) {
+			found3= false;
 			found = true;
 		}
-		else if (!(string.contains("3"))) {
-		found2 = false;	
-		found= true;
-		numUnits = 3;
-		}
+		
 		else {
-		numUnits = num;
 		string = string.replaceAll("\\s", "");
 		string = string.replaceAll("\\d","");
 		if (string.length() >= 4) {
