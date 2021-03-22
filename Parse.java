@@ -21,44 +21,38 @@ public class Parse {
 	}
 	
 	public void countryId (String string) {
-		boolean found = false;
-		boolean found2 = true;
-		boolean found3 = true;
-		int num=0;
-		if (string.matches(".*\\d.*")) {
-		String number= string.replaceAll("[^0-9]", "");
-		num = Integer.parseInt(number);
-		}
+		  boolean found = false;
+            boolean found2 = true;
+            boolean found3 = true;
+            int num=0;
+            if(string.matches(".\\d.")) {
+                String number = string.replaceAll("[^0-9]", "");
+                num = Integer.parseInt(number);
+            }
+            if(num!=3) {
+                found3 = false;
+                found = true;
+            }
+            else {
+                string = string.replaceAll("\\s", "");
+                string = string.replaceAll("\\d","");
+                if (string.length() >= 4) {
+                    string = string.toLowerCase();
+                    string = string.substring(0,4);
+                    for (int i=0; (i<GameData.NUM_COUNTRIES) && !found; i++) {
+                        if (string.equals(countryCodes[i])) {
+                            found = true;
+                            countryId = i;
+                        }
+                    }
+                }
+            }
+            isError = !found;
+            isError2 = !found2;
+            isError3 = !found3;
+            return;
+        }
 		
-		if (!(string.matches(".*\\d.*"))) {
-			found2 = false;
-			found = true;
-			}
-		
-		else if(num!=3) {
-			found3= false;
-			found = true;
-		}
-		
-		else {
-		string = string.replaceAll("\\s", "");
-		string = string.replaceAll("\\d","");
-		if (string.length() >= 4) {
-			string = string.toLowerCase();
-			string = string.substring(0,4);
-	 		for (int i=0; (i<GameData.NUM_COUNTRIES) && !found; i++) {
-				if (string.equals(countryCodes[i])) {
-					found = true;
-					countryId = i;
-				}
-	 		}
-		}
-		}
-		isError = !found;
-		isError2 = !found2;
-		isError3 = !found3;
-		return;
-	}
 	
 	public void countryId2 (String string) {
 		boolean found = false;
