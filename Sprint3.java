@@ -90,8 +90,68 @@ public class Sprint3 {
 		ui.displayRollWinner(currPlayer);
 		
 		ui.displayString("\nSTART TURNS\n");
-		
-		return;
-	}
+		do {
+            otherPlayerId = (playerId+1)%GameData.NUM_PLAYERS;
+            otherPlayer = players[otherPlayerId];
+
+            // 1. Reinforcements
+            numUnits = board.calcReinforcements(currPlayer);
+            currPlayer.addUnits(numUnits);
+            ui.displayReinforcements(currPlayer, numUnits);
+            do {
+                ui.inputReinforcement(currPlayer);
+                currPlayer.subtractUnits(ui.getNumUnits());
+                board.addUnits(ui.getCountryId(),currPlayer,ui.getNumUnits());
+                ui.displayMap();
+            } while (currPlayer.getNumUnits() > 0);
+
+            // 2. Combat
+            do {
+                ui.inputBattle(currPlayer);
+                if (!ui.isTurnEnded()) {
+                    attackUnits = ui.getNumUnits();
+                    attackCountryId = ui.getFromCountryId();
+                    defenceCountryId = ui.getToCountryId();
+                    defencePlayer = players[board.getOccupier(defenceCountryId)];
+                    if (board.getNumUnits(defenceCountryId) > 1) {
+                        ui.inputDefence(otherPlayer,defenceCountryId);
+                        defenceUnits = ui.getNumUnits();
+                    } else {
+                        defenceUnits = 1;
+                    }
+                    board.calcBattle(currPlayer,defencePlayer,attackCountryId,defenceCountryId,attackUnits,defenceUnits);
+                    ui.displayBattle(currPlayer,defencePlayer);
+                    ui.displayMap();
+                    if ( board.isInvasionSuccess() && (board.getNumUnits(attackCountryId) > 1) ) {
+                        ui.inputMoveIn(currPlayer,attackCountryId);
+                        board.subtractUnits(attackCountryId, ui.getNumUnits());
+                        board.addUnits(defenceCountryId, currPlayer, ui.getNumUnits());
+                        ui.displayMap();
+                    }
+                }
+
+            } while (!ui.isTurnEnded() && !board.isGameOver());
+
+            // 3. Fortify
+            if (!board.isGameOver()) {
+                ui.inputFortify(currPlayer);
+                if (!ui.isTurnEnded()) {
+                    board.subtractUnits(ui.getFromCountryId(), ui.getNumUnits());
+                    board.addUnits(ui.getToCountryId(), currPlayer, ui.getNumUnits());
+                    ui.displayMap();
+                }
+            }
+
+            playerId = (playerId+1)%GameData.NUM_PLAYERS;
+            currPlayer = players[playerId];
+
+        } while (!board.isGameOver());
+
+        ui.displayWinner(players[board.getWinner()]);
+        ui.displayString("GAME OVER");
+
+        return;
+    }
+
 
 }
