@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Random;
+
 
 public class Random2 implements Bot {
 	
@@ -19,9 +21,21 @@ public class Random2 implements Bot {
 	}
 
 	public String getReinforcement () {
-		String command = "";
-		command = GameData.COUNTRY_NAMES[(int)(Math.random() * GameData.NUM_COUNTRIES)];
-		command = command.replaceAll("\\s", "");
+		ArrayList<Integer> countries = new ArrayList<Integer>();
+		int a;
+		
+		for (int i = 0; i < GameData.NUM_COUNTRIES; i++){
+			if (board.getOccupier(i) == player.getId()){
+				countries.add(i);
+			}
+		}
+		
+			int rnd = new Random().nextInt(countries.size());
+			a = countries.get(rnd);
+		
+		String attackf = GameData.COUNTRY_NAMES[a];
+		attackf = attackf.replaceAll("\\s", "");
+		String command = attackf;
 		command += " 1";
 		return(command);
 	}
@@ -89,19 +103,22 @@ public class Random2 implements Bot {
 		String attackt = "";
 		ArrayList<Integer> opposition = new ArrayList<Integer>();
 		ArrayList<Integer> countries = new ArrayList<Integer>();
-		
+		int y = (int)(Math.random() * 5);
+		if (y != 3){
 			for (int x = 0; x < GameData.NUM_COUNTRIES; x++){
 				if (board.getOccupier(x) == player.getId()){
 					countries.add(x);
 				}
 			}
-		
-			do {
-				a = (int) (Math.random() * countries.size());
+
+			do { 
+				int rnd = new Random().nextInt(countries.size());
+				a = countries.get(rnd);
 			} while (board.getNumUnits(a) < 2);
-			
+
 			int[] adj = GameData.ADJACENT[a];
 			attackf = GameData.COUNTRY_NAMES[a];
+			attackf = attackf.replaceAll("\\s", "");
 			
 			for (int i = 0; i < adj.length; i++){
 				if (board.getOccupier(adj[i]) != player.getId()){
@@ -112,6 +129,8 @@ public class Random2 implements Bot {
 			if (opposition.size() > 0){
 				int k = (int) (Math.random() * adj.length);
 				attackt = GameData.COUNTRY_NAMES[adj[k]];
+				attackt = attackt.replaceAll("\\s", ""); 
+			
 				if (board.getNumUnits(a) == 2){
 					numunits = 1;
 				}
@@ -123,12 +142,13 @@ public class Random2 implements Bot {
 				}
 				command = attackf + " " + attackt + " " + numunits;
 			}
-			
+		
 			else command = "skip";
-	
-			
+		}
+		
+		else command = "skip";	
 		return(command);
-	}
+	}	
 
 	public String getDefence (int countryId) {
 		
@@ -138,12 +158,12 @@ public class Random2 implements Bot {
 		}
 		else command = "2";
 		
-		return command;
+		return(command);
 	}
 
 	public String getMoveIn (int attackCountryId) {
 		String command = "";
-		command = "0";
+		command = "1";
 		System.out.println(command);
 		return(command);
 	}
@@ -152,5 +172,6 @@ public class Random2 implements Bot {
 		String command = ""; 
 		command = "skip";
 		return(command);
+	}
 	}
 	}
